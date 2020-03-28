@@ -56,7 +56,22 @@
     </div>
   </nav>
 
-  {% block content %}{% endblock content %}
+  <!--Header-->
+  {% block header %}{% endblock header %}
+
+  <!-- Main Content -->
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+
 
   <!-- Footer -->
   <footer class="footer">

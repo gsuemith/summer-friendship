@@ -1,36 +1,38 @@
 {% extends "layout.html" %}
-{% block content %}
+{% block header %}
   <!-- Header -->
   <header class="masthead">
     <div class="container">
       <div class="intro-text">
         <div class="intro-lead-in">Welcome To Summer Friendship</div>
-        <div class="intro-heading text-uppercase">Get ready for a Fun Summer!</div>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Parents</a>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">&nbsp;Youth&nbsp;</a>
-        </div>
+        <div class="intro-heading text-uppercase">Ready for Summer?</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger mb-2" href="{{ url_for('user_parent') }}">Parents</a>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger mb-2" href="{{ url_for('user_youth') }}">&nbsp;&nbsp;Youth&nbsp;&nbsp;</a>
       </div>
     </div>
   </header>
+{% endblock header %}
 
+{% block content %}
   <!-- Services -->
-  <section class="page-section" id="services">
+  <section class="page-section" id="continue">
     <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">First Steps</h2>
+          <h2 class="section-heading text-uppercase">Next Steps</h2>
           <h3 class="section-subheading text-muted">Register and stay up to date.</h3>
         </div>
       </div>
       <div class="row text-center">
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x">f
-            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
-          </span>
-          <h4 class="service-heading">Calendar</h4>
-          <p class="text-muted">Add us to your calendar and always have the latest information on trips and events.</p>
-        </div>
         <div class="col-md-4">
           <span class="fa-stack fa-4x">
             <i class="fas fa-circle fa-stack-2x text-primary"></i>
@@ -38,6 +40,14 @@
           </span>
           <h4 class="service-heading">Registration</h4>
           <p class="text-muted">No more paper forms and permission slips!</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">f
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Calendar</h4>
+          <p class="text-muted">Add us to your calendar and always have the latest information on trips and events.</p>
         </div>
         <div class="col-md-4">
           <span class="fa-stack fa-4x">
